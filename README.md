@@ -11,6 +11,12 @@ conformance suite. It contains no product code. An implementation in any
 language is correct when it produces the verdicts in `conformance/` for the
 inputs in `conformance/`.
 
+## Status
+
+Early and pre-release. Testnet only. Unaudited. The protocol is a first draft
+open to change through the proposal process in `CONTRIBUTING.md`. Do not rely on
+it for anything holding real value.
+
 ## The three repositories
 
 Pulsar is split across three repositories in the `Pulsar-agent-org` GitHub

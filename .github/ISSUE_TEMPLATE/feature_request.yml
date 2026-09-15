@@ -1,0 +1,54 @@
+name: Feature request
+description: Propose new specification work, vectors, or documentation
+labels: ["type:feature"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A change to normative text or to conformance vectors needs a written
+        proposal and a maintainer sign-off first. Conformance vectors change only
+        alongside a spec change.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and context
+      description: What is ambiguous, missing, or hard to implement, and why it matters.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: What you propose, and the files it likely touches.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: >
+        How a reviewer will know it is done. A change to a security-relevant rule
+        must include a vector proving the failure case.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - "protocol"
+        - "conformance"
+        - "contracts"
+        - "docs"
+    validations:
+      required: true
+  - type: dropdown
+    id: difficulty
+    attributes:
+      label: Difficulty
+      options:
+        - "good first issue"
+        - "intermediate"
+        - "advanced"
+    validations:
+      required: false
