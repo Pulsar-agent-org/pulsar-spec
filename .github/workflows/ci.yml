@@ -1,0 +1,26 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Validate conformance vectors
+        run: node tools/validate.mjs
+      - name: Check formatting
+        run: npx --yes prettier@3 --check "**/*.{json,md}"
+      - name: Forbid attribution and emoji artifacts
+        run: |
+          if grep -rniE "co-authored-by|claude code|generated with|🤖" . \
+            --exclude-dir=node_modules --exclude-dir=.git; then
+            echo "forbidden marker found"
+            exit 1
+          fi

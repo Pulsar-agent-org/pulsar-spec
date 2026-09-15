@@ -210,20 +210,20 @@ through an IEEE-754 binary float on any payment path.
 `payment_required` is the code for the initial challenge sent when a request
 arrives with no `Authorization: Pulsar` header. It is not a failure.
 
-| verdict              | HTTP | re-challenge | client should |
-| -------------------- | ---- | ------------ | ------------- |
-| payment_required     | 402  | yes          | pay, then retry |
-| malformed_request    | 400  | no           | fix the request; do not pay |
-| unknown_nonce        | 402  | yes (new nonce) | pay against the new challenge |
-| nonce_used           | 402  | no           | stop; treat as terminal (a retry would double-pay) |
-| nonce_expired        | 402  | yes (new nonce) | pay against the new challenge |
-| tx_not_found         | 402  | no           | wait for inclusion, retry the same proof |
-| tx_failed            | 402  | no           | stop; the payment did not settle |
-| memo_mismatch        | 402  | no           | stop; the payment is not bound to this nonce |
-| wrong_destination    | 402  | no           | stop |
-| wrong_asset          | 402  | no           | stop |
-| insufficient_amount  | 402  | no           | stop; the client underpaid |
-| valid                | 200  | no           | consume the response |
+| verdict             | HTTP | re-challenge    | client should                                      |
+| ------------------- | ---- | --------------- | -------------------------------------------------- |
+| payment_required    | 402  | yes             | pay, then retry                                    |
+| malformed_request   | 400  | no              | fix the request; do not pay                        |
+| unknown_nonce       | 402  | yes (new nonce) | pay against the new challenge                      |
+| nonce_used          | 402  | no              | stop; treat as terminal (a retry would double-pay) |
+| nonce_expired       | 402  | yes (new nonce) | pay against the new challenge                      |
+| tx_not_found        | 402  | no              | wait for inclusion, retry the same proof           |
+| tx_failed           | 402  | no              | stop; the payment did not settle                   |
+| memo_mismatch       | 402  | no              | stop; the payment is not bound to this nonce       |
+| wrong_destination   | 402  | no              | stop                                               |
+| wrong_asset         | 402  | no              | stop                                               |
+| insufficient_amount | 402  | no              | stop; the client underpaid                         |
+| valid               | 200  | no              | consume the response                               |
 
 A re-challenge carries a fresh challenge and an `error` parameter naming the
 verdict, and the response body SHOULD be
